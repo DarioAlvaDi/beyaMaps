@@ -1,14 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require("morgan");
 const turistasRouter = require('./src/routes/turistas');
 const cors = require('cors');
 const app = express();
 app.use(cors());
+app.use(morgan("dev"));
 // Middleware para analizar solicitudes JSON
 app.use(express.json());
 
 // Middleware para analizar solicitudes con datos de formulario
 app.use(express.urlencoded({ extended: true }));
+
 
 // Usa el router de turistas en la ruta /turistas
 app.use('/turistas', turistasRouter);
